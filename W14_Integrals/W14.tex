@@ -1,0 +1,257 @@
+\documentclass[]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{xeCJK}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{mathtools}
+\usepackage{utopia} %font utopia imported
+\usetheme{CambridgeUS}
+\usecolortheme{dolphin}
+\usefonttheme{professionalfonts}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{extarrows}
+% \usepackage{enumitem}
+
+\setCJKmainfont{SourceHanSansSC-Regular.otf}[Path=../, BoldFont=bold.otf]
+
+\setbeamerfont{title}{size=\Large}
+\setbeamerfont{subtitle}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{institute}{size=\small}
+
+\setstretch{1.3}
+% \setlength{\parindent}{2em}
+% \setlength{\parskip}{0pt}
+% \setlist[itemize]{leftmargin=2em}
+
+% ↓↓↓ Modify this ↓↓↓
+\title{高等数学I\quad 习题课14}
+\subtitle{定积分}
+\date[2025.12.18]{2025.12.18}
+% ↑↑↑ Modify this ↑↑↑
+
+\author[上海科技大学]{}
+\institute[]{上海科技大学}
+
+\begin{document}
+
+\begin{frame}
+    \vspace{15pt}
+    \titlepage
+\end{frame}
+
+\begin{frame}{目录}
+    \vfill
+    \tableofcontents[hideallsubsections]
+    \vfill
+\end{frame}
+
+\AtBeginSection[ ]
+{
+\begin{frame}{目录}
+    \vfill
+    \tableofcontents[currentsection,hideallsubsections]
+    \vfill
+\end{frame}
+}
+
+\section{定积分}
+
+\subsection{几何理解}
+
+\begin{frame}{回到两周前，不定积分}
+    \begin{itemize}
+        \item 情景：人坐在车内，只能看见速度表$v(t)$，试图找出当前已经行驶过的距离$S(t)$
+        \item 做法：每隔固定间隔$\Delta t$，记录速度$v_i$，认为在该时间段内，汽车匀速行驶，距离$S_i=v_i\Delta t$，$\displaystyle S_0=\sum_n v_i\Delta t$.
+        \item 随着$\Delta t$不断减小，$S_0$越来越接近真实的距离$S$，即
+        \[
+        S=\lim_{\mathrm dt\rightarrow 0}\sum_n v_i\mathrm dt=\int_a^b v(t)\mathrm dt
+        \]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{$\mathrm dt$？}
+    $\mathrm dt$代表？
+    \begin{enumerate}
+        \item 图像中，每个矩形的宽度（显式的$\mathrm dt$项）
+        \item 记录速度的时间步长（藏在$v_i$中），决定$n$的大小
+    \end{enumerate}
+    注意：矩形的高度可以在$[n\Delta T,n\Delta t+\Delta t]$区间上函数的值域内任意选取. 由函数的可积性，可知当区间大小$\Delta t$足够小，最终取值都将收缩到一个点上，因此多个小矩形面积之和也都将拟合为曲线下面积.
+\end{frame}
+
+\subsection{定义}
+
+\begin{frame}{课后题 1.(2)}
+    使用定义计算定积分
+    \[
+    \int_0^1 e^x\mathrm dx
+    \]    
+\end{frame}
+
+\subsection{性质}
+
+\begin{frame}{Schwarz不等式}
+    设函数$f(x),g(x)\in C[a,b]$，则
+    \[
+    \left(\int_a^b f(x)g(x)\mathrm dx\right)^2\le \int_a^bf^2(x)\mathrm dx\int_a^bg^2(x)\mathrm dx
+    \]
+    可以证明，当条件由$C[a,b]$减弱到$R[a,b]$时，不等式依然成立.
+\end{frame}
+
+\subsection{积分中值定理}
+
+\begin{frame}{积分中值定理}
+    设函数$f\in C[a,b],g\in R[a,b]$，且$g(x)$在$[a,b]$上不变号，则
+    \[
+    \exists \xi\in[a,b],\ \text{s.t.}\ \int_a^b f(x)g(x)\mathrm dx=f(\xi)\int_a^bg(x)\mathrm dx
+    \]
+\end{frame}
+
+\section{微积分基本定理}
+
+\begin{frame}{问题}
+    \begin{itemize}
+        \item 之前对问题的转换，似乎只是把“根据仪表盘显示求距离”这样一个复杂的问题，转换为了“求$v(t)$曲线下面积”一个同样复杂的问题
+        \item 当我们考虑这个问题的更多性质时...
+    \end{itemize}
+\end{frame}
+
+\subsection{变上限积分}
+
+\begin{frame}{变上限积分?}
+    设$v(t)=t(8-t)$. 考虑函数
+    \[
+    S(T)=\int_0^T v(t)\mathrm dt
+    \]
+    它的几何意义？它的导数？
+\end{frame}
+
+\begin{frame}{变上限积分的导数}
+    从两个不同角度：
+    \begin{enumerate}
+        \item $S(T)$是当前行驶过的距离，其导函数自然应当等于$v(t)$；
+        \item 考虑$\mathrm dS$，当$\mathrm dt$足够小，$\mathrm dS=v(t)\mathrm dt$，即$S'(t)=v(t)$
+    \end{enumerate}
+\end{frame}
+
+
+
+\begin{frame}{变上限积分}
+    设函数$f\in R[a,b]$，则称函数
+    \[
+    \Phi(x)=\int_a^x f(t)\mathrm dt,\quad x\in[a,b]
+    \]
+    为$f$在$[a,b]$上的\textbf{变上限积分函数}，简称为变上限积分.
+\end{frame}
+
+\begin{frame}{性质}
+    \begin{itemize}
+        \item $\Phi(x)\in C[a,b]$
+        \item 若$f(x)\in C[a,b]$，则$\Phi(x)\in D[a,b]$，且它的导函数\[\Phi'(x)=\frac{\mathrm d}{\mathrm dx}\int_a^xf(t)\mathrm dt=f(x)\]
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{例5.10}
+    求
+    \[
+    \int_{2x}^0xe^{-t} \mathrm dt
+    \]
+    的导函数.
+\end{frame}
+
+\begin{frame}{例5.11}
+    求
+    \[
+    \lim_{x\rightarrow 0^+}\frac{\displaystyle\int_0^{x^2}\arctan \sqrt{t}\mathrm dt}{\displaystyle\ln(1+x^3)}
+    \]
+\end{frame}
+
+\subsection{牛顿-莱布尼茨公式}
+
+\begin{frame}{再次回到情景}
+    设$v(t)=t(8-t)$. 考虑函数
+    \[
+    S(T)=\int_0^T v(t)\mathrm dt
+    \]
+    想要求出自$a$时刻至$b$时刻，汽车行驶的距离
+\end{frame}
+
+\begin{frame}{理解}
+    \begin{enumerate}
+        \item 两处行驶的总距离之差即为所求，$S(b)-S(a)$
+        \item $[a,b]$区间上曲线下的面积即为行驶过的距离：$\displaystyle\int_a^b v(t)\mathrm dt$
+    \end{enumerate}
+    $\Rightarrow$
+    $$\displaystyle \int_a^b v(t)\mathrm dt=S(b)-S(a)$$
+\end{frame}
+
+\begin{frame}{牛顿-莱布尼茨公式}
+    设函数$f\in C[a,b]$，且$F(x)$是$f(x)$在$[a,b]$内的一个原函数，则
+    \[
+    \int_a^b f(x)\mathrm dx = F(b)-F(a)=:F(x)\Big|_a^b
+    \]
+\end{frame}
+
+\section{综合练习}
+
+\begin{frame}{例5.9}
+   设函数$f\in C[0,1]$，且$f\in D(0,1)$，又$\displaystyle f(1)=2\int_0^{\frac12}xf(x)\mathrm dx$，证明：
+   \[
+   \exists \xi\in(0,1),\ \text{s.t.}\ f(\xi)+\xi f'(\xi)=0.
+   \] 
+\end{frame}
+
+\begin{frame}{例5.57 (奇函数、偶函数的对称性)}
+    设函数$f(x)\in R[-a,a]$，证明：
+    \[
+    \int_{-a}^a f(x)\mathrm dx=\left\{
+    \begin{array}{ll}
+        0,&f\text{为奇函数}\\
+        \displaystyle 2\int_0^af(x)\mathrm dx,&f\text{为偶函数}
+    \end{array}
+    \right.
+    \]
+\end{frame}
+
+\begin{frame}{例5.58 （周期函数的积分性质）}
+    设$f(x)$是$\mathbb R$以$T$为周期的连续函数，证明：
+    \[
+    \forall a\in \mathbb R,\ \int_a^{a+T}f(x)\mathrm dx=\int_0^Tf(x)\mathrm dx
+    \]
+\end{frame}
+
+\begin{frame}{例5.60 （三角函数的对称性）}
+    计算：
+    \[
+    I_1=\int_{0}^{\frac{\pi}{2}}\frac{\mathrm dx}{1+\tan x},\qquad I_2=\int_{-\pi}^{\pi}\frac{x\sin x\mathrm dx}{1+\cos^2 x}
+    \]
+\end{frame}
+
+\begin{frame}{练习}
+    求
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{enumerate}
+                \item [(1)]$\displaystyle\int_1^2 x\ln x\mathrm dx$
+                \item [(2)]$\displaystyle\int_0^1 \arctan x\mathrm dx$
+                \item [(3)]$\displaystyle\int_0^{\pi^2/4}\sin\sqrt{x}\mathrm dx$
+                \item [(4)]$\displaystyle\int_0^{2\pi}\sin^4x\cos^2x\mathrm dx$
+            \end{enumerate}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{enumerate}
+                \item [(5)] $\displaystyle\int_0^{2\pi}x\cos^2 x\mathrm dx$
+                \item [(6)] $\displaystyle\int_0^{\pi/4} \sec^3x\mathrm dx$
+                \item [(7)] $\displaystyle\int_0^1 x\sqrt{(1-x^4)^3}\mathrm dx$
+                \item [(8)] $\displaystyle\int_{0}^{\pi/4}\frac{x\mathrm dx}{1+\cos 2x}$
+            \end{enumerate}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+
+\end{document}
