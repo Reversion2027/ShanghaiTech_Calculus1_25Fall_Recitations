@@ -1,0 +1,336 @@
+\documentclass[]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{xeCJK}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{mathtools}
+\usepackage{utopia} %font utopia imported
+\usetheme{CambridgeUS}
+\usecolortheme{dolphin}
+\usefonttheme{professionalfonts}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{extarrows}
+% \usepackage{enumitem}
+
+\setCJKmainfont{SourceHanSansSC-Regular.otf}[Path=../fonts/, BoldFont=bold.otf]
+
+\setbeamerfont{title}{size=\Large}
+\setbeamerfont{subtitle}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{institute}{size=\small}
+
+\setstretch{1.3}
+% \setlength{\parindent}{2em}
+% \setlength{\parskip}{0pt}
+% \setlist[itemize]{leftmargin=2em}
+
+% ↓↓↓ Modify this ↓↓↓
+\title{高等数学I\quad 习题课15}
+\subtitle{定积分}
+\date[2025.12.25]{2025.12.25}
+% ↑↑↑ Modify this ↑↑↑
+
+\author[上海科技大学]{}
+\institute[]{上海科技大学}
+
+\begin{document}
+
+\begin{frame}
+    \vspace{15pt}
+    \titlepage
+\end{frame}
+
+% \begin{frame}{习题课14 反馈}
+%     \begin{columns}
+%         \begin{column}{0.5\textwidth}
+%             \begin{figure}[H]
+%                 \centering
+%                 \includegraphics[width=1.0\linewidth]{fb1.png}
+%                 \caption{课程质量}
+%             \end{figure}
+%         \end{column}
+
+%         \begin{column}{0.5\textwidth}
+%             \begin{figure}[H]
+%                 \centering
+%                 \includegraphics[width=1.0\linewidth]{fb1.png}
+%                 \caption{课堂氛围}
+%             \end{figure}
+%         \end{column}
+%     \end{columns}
+% \end{frame}
+
+% \begin{frame}{关于后续}
+%     请使用QQ或微信扫码
+%     \begin{figure}[H]
+%         \centering
+%         \includegraphics[width=0.5\linewidth]{extra_recite.png}
+%     \end{figure}
+% \end{frame}
+
+
+\begin{frame}{目录}
+    \vfill
+    \tableofcontents[hideallsubsections]
+    \vfill
+\end{frame}
+
+\AtBeginSection[ ]
+{
+\begin{frame}{目录}
+    \vfill
+    \tableofcontents[currentsection,hideallsubsections]
+    \vfill
+\end{frame}
+}
+
+\section{定积分的应用}
+
+\begin{frame}{平面图形的面积}
+    取任意子区间$[x,x+\mathrm dx]\subset [a,b]$，则这个子区间中对应的图形的面积$\Delta A$近似地等于高为$f(x)-g(x)$，底为$\mathrm dx$的窄矩形的面积，从而面积微元
+    \[
+    \Delta A = [f(x)-g(x)]\mathrm dx
+    \]
+    面积
+    \[
+    A = \int_a^b dA =\int_a^b [f(x)-g(x)]\mathrm dx
+    \]
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\linewidth]{plane.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{例}
+    求曲线$y=e^x$与通过坐标原点的切线及$y$轴所围成的图形的面积.
+\end{frame}
+
+\begin{frame}{参数方程情况}
+    若函数以参数方程$\displaystyle\left\{\begin{array}{l}x=x(t),\\y=y(t)\end{array}\right.(\alpha \le t \le \beta)$给出，其中$x(t),y(t)$在$[\alpha,\beta]$
+    上有\textbf{连续导数}，$y(t)\ge 0$且$a = x(\alpha),b=x(\beta)$，若$x$严格单调则其有反函数。
+    
+    则，若$x(t)$\textbf{严格单调增加}，
+    \[
+    A=\int_a^b y\mathrm dx = \int_\alpha^\beta y(t)x'(t)dt
+    \]
+    若$x(t)$\textbf{严格单调减少}，
+     \[
+    A=\int_a^b y\mathrm dx = \int_\beta^\alpha y(t)x'(t)dt
+    \]
+\end{frame}
+
+\begin{frame}{例}
+    设$P$为曲线$\displaystyle\left\{\begin{array}{l}
+        x=\cos t,\\y=2\sin^2 t
+    \end{array}\right.\left(0\le t\le \frac{\pi}{2}\right)$上的一点，$O$为坐标原点，记曲线与直线$OP$及$x$轴所围成的图形的面积为$S$.
+    \begin{enumerate}
+        \item 将$y$表示为$x$的函数，并求面积$S=S(x)$的表达式；
+        \item 将$S$表示为$t$的函数，并求$\displaystyle\frac{\mathrm dS}{\mathrm dt}$最大时点$P$的坐标.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{极坐标情况}
+    任意取子区间$[\theta,\theta+\mathrm d\theta]\subset [\alpha,\beta]$，考虑这个子区间上对应的小曲边扇形，其面积近似等于半径为$r(\theta)$，圆心角为$\mathrm d\theta$的
+    小扇形的面积，于是曲边扇形的面积：
+    \[
+    \mathrm dA = \frac12r^2(\theta)\mathrm d\theta \quad\Leftrightarrow\quad A = \int_\alpha^\beta \frac{1}{2}r^2(\theta)\mathrm d\theta
+    \]
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.25\linewidth]{polar.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{例}
+    求双纽线
+    \[
+    r^2=a^2\cos 2\theta
+    \]
+    所围成图形的面积
+\end{frame}
+
+\begin{frame}{例}
+    在双纽线$r^2=4\cos 2\theta$位于第一象限部分上求一点$M$，使得坐标原点$O$与点$M$的连线$OM$将双纽线所围成的位于第一象限部分的图形分为面积相等的两部分.
+\end{frame}
+
+\begin{frame}{注意事项}
+    \begin{itemize}
+        \item 适时转换积分变量，例如从$x$轴变换为$y$轴，从直角坐标变为极坐标
+        \item 参数方程？
+        \item 极坐标下的面积微元公式（扇形的面积公式？）
+        \item 画图！！！
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{立体的体积}
+    若立体截面积沿$x$轴的变化情况已知，设在$x$处的截面积为$A(x)$，则
+    \[
+    \mathrm dV = A(x)\mathrm dx\quad\Leftrightarrow \quad V = \int_a^b A(x)\mathrm dx
+    \]
+    称为薄片法
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.5\linewidth]{volume.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{例 5.83}
+    求由椭圆柱面$\frac{x^2}{a^2}+\frac{y^2}{b^2}=1$，平面$xOy$以及过$x$轴与$xOy$平面成$\alpha$角的半平面所围成的“椭圆柱楔形”的体积
+\end{frame}
+
+\begin{frame}{薄壳法}
+    取任意子区间$[x,x+\mathrm dx]\subset [a,b]$，则阴影部分图形对应的旋转体的体积
+    \[
+    \Delta V = [\pi(x+\mathrm dx)^2-\pi x^2]f(x)=\pi f(x)[2x\mathrm dx +(\mathrm dx)^2]
+    \]
+    即
+    \[
+    \mathrm dV = 2\pi xf(x)\mathrm dx\quad\Leftrightarrow\quad V=2\pi\int_a^b xf(x)\mathrm dx 
+    \]
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.4\linewidth]{shell.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{平面曲线的弧长}
+    \begin{itemize}
+        \item 直角坐标：
+        \[
+        s = \int_a^b\mathrm ds = \int_a^b \sqrt{1+f^{\prime2}(x)}\ \mathrm dx
+        \]
+        \item 参数方程：
+        \[
+        s = \int_\alpha^\beta \sqrt{x'^2(t)+y'^2(t)}\ \mathrm dt
+        \]
+    \end{itemize}
+    几何意义：对曲线进行细分，再用很多条首尾相连的线段进行拟合
+
+    曲线方程可导 $\Leftrightarrow$ 曲线在每一点都可以近似地视为一条直线 $\Leftrightarrow$ 当细分足够细（到积分的程度），线段长度和与弧长相等
+\end{frame}
+
+\section{反常积分}
+
+\begin{frame}{反常积分的定义}
+    设函数$f(x)$在$[a,+\infty)$上有定义，且对任意$b>a$，$f$在$[a,b]$上可积，则把形式积分$\displaystyle\int_a^{+\infty}f(x)\mathrm dx$称为$f(x)$在无穷区间$[a,+\infty)$上的反常积分.
+
+    设函数$f(x)$在$[a,b)$上有定义，$b$是$f(x)$的\textbf{奇点}，且$\forall 0<\varepsilon<b-a$，$f(x)$在$[a,b-\varepsilon]$上可积，称形式积分$\displaystyle\int_a^bf(x)\mathrm dx$为$f(x)$在$[a,b)$上的反常积分.
+\end{frame}
+
+\begin{frame}{极限形式}
+    \[
+    \int_a^{+\infty}f(x)\mathrm dx = \lim_{b\rightarrow+\infty}\int_a^bf(x)\mathrm dx;\int_{-\infty}^{b}f(x)\mathrm dx = \lim_{a\rightarrow-\infty}\int_a^bf(x)\mathrm dx
+    \]
+    \[
+    \int_a^b f(x)\mathrm dx = \lim_{\varepsilon\rightarrow 0^+}\int_a^{b-\varepsilon}f(x)\mathrm dx
+    \]
+\end{frame}
+
+\begin{frame}{反常积分的计算}
+    \begin{enumerate}
+        \item 找被积函数的奇点，利用区间可加性，将积分分解为多个区间上的常义积分 / 反常积分
+        \item 将反常积分转化为极限形式，计算其极限
+        \item 综合结果
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{反常积分的敛散性}
+    若以极限形式表示反常积分，其极限存在，则反常积分收敛；否则其发散.
+
+    能够、需要被分解成多个积分的反常积分收敛的充要条件是所有分解得到的积分均收敛
+\end{frame}
+
+\begin{frame}{例}
+    求
+    \[
+    \int_0^1 \ln x\mathrm dx
+    \]
+\end{frame}
+
+\section{综合练习}
+
+\subsection{计算}
+
+\begin{frame}{例5.60 （三角函数的对称性）}
+    计算：
+    \[
+    I_1=\int_{0}^{\frac{\pi}{2}}\frac{\mathrm dx}{1+\tan x},\qquad I_2=\int_{-\pi}^{\pi}\frac{x\sin x\mathrm dx}{1+\cos^2 x}
+    \]
+\end{frame}
+
+\begin{frame}{练习}
+    求
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{enumerate}
+                \item [(1)]$\displaystyle\int_1^2 x\ln x\mathrm dx$
+                \item [(2)]$\displaystyle\int_0^1 \arctan x\mathrm dx$
+                \item [(3)]$\displaystyle\int_0^{\pi^2/4}\sin\sqrt{x}\mathrm dx$
+                \item [(4)]$\displaystyle\int_0^{2\pi}\sin^4x\cos^2x\mathrm dx$
+            \end{enumerate}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{enumerate}
+                \item [(5)] $\displaystyle\int_0^{2\pi}x\cos^2 x\mathrm dx$
+                \item [(6)] $\displaystyle\int_0^{\pi/4} \sec^3x\mathrm dx$
+                \item [(7)] $\displaystyle\int_0^1 x\sqrt{(1-x^4)^3}\mathrm dx$
+                \item [(8)] $\displaystyle\int_{0}^{\pi/4}\frac{x\mathrm dx}{1+\cos 2x}$
+            \end{enumerate}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\subsection{证明}
+
+\begin{frame}{例5.9}
+   设函数$f\in C[0,1]$，且$f\in D(0,1)$，又$\displaystyle f(1)=2\int_0^{\frac12}xf(x)\mathrm dx$，证明：
+   \[
+   \exists \xi\in(0,1),\ \text{s.t.}\ f(\xi)+\xi f'(\xi)=0.
+   \] 
+\end{frame}
+
+\begin{frame}{补充题9}
+    设函数$f\in C[a,b]\cap D(a,b)$，且$f'(x)\ge 0(x\in (a,b))$，求证
+    \[
+    \int_a^b xf(x)\mathrm dx \ge \frac{a+b}{2}\int_a^b f(x)\mathrm dx
+    \]
+\end{frame}
+
+\begin{frame}{补充题10}
+    设函数$f\in C[0,+\infty)$，且$\forall a,b>0$，满足不等式
+    \[
+    f\left(\frac{a+b}{2}\right)\le\frac{f(a)+f(b)}{2}
+    \]
+    记$\displaystyle F(x)=\frac1x \int_0^xf(t)\mathrm dt$。证明不等式
+    \[
+    F\left(\frac{a+b}{2}\right)\le \frac{F(a)+F(b)}{2}\quad(a,b>0)
+    \]
+\end{frame}
+
+\begin{frame}{补充题11}
+    设函数$f(x)$在$[0,1]$上二阶可导，且$f''(x)\ge0(x\in[0,1])$。证明：
+    \[
+    \int_0^1 f(x^2)\mathrm dx\ge f\left(\frac{1}{3}\right)
+    \]
+\end{frame}
+
+% -------------------------------------------------------
+% \section*{}
+% \begin{frame}{反馈问卷}
+%     \begin{figure}[H]
+%         \centering
+%         \includegraphics[width=0.5\linewidth]{qrcode.png}
+%     \end{figure}
+% \end{frame}
+% \begin{frame}
+% \vspace{25pt}
+% \[
+% \text{\Huge }
+% \]
+% \end{frame}
+
+\end{document}
