@@ -1,0 +1,342 @@
+\documentclass[]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{xeCJK}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{mathtools}
+\usepackage{utopia} %font utopia imported
+\usetheme{CambridgeUS}
+\usecolortheme{dolphin}
+\usefonttheme{professionalfonts}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{extarrows}
+% \usepackage{enumitem}
+
+\setCJKmainfont{SourceHanSansSC-Regular.otf}[Path=../fonts/, BoldFont=bold.otf]
+
+\setbeamerfont{title}{size=\Large}
+\setbeamerfont{subtitle}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{institute}{size=\small}
+
+\setstretch{1.3}
+% \setlength{\parindent}{2em}
+% \setlength{\parskip}{0pt}
+% \setlist[itemize]{leftmargin=2em}
+
+% ↓↓↓ Modify this ↓↓↓
+\title{高等数学I\quad 习题课16}
+\subtitle{级数}
+\date[2025.12.30]{2025.12.30}
+% ↑↑↑ Modify this ↑↑↑
+
+\author[上海科技大学]{}
+\institute[]{上海科技大学}
+
+\begin{document}
+
+\begin{frame}
+    \vspace{15pt}
+    \titlepage
+\end{frame}
+
+\begin{frame}{目录}
+    \vfill
+    \tableofcontents[hideallsubsections]
+    \vfill
+\end{frame}
+
+\AtBeginSection[ ]
+{
+\begin{frame}{目录}
+    \vfill
+    \tableofcontents[currentsection,hideallsubsections]
+    \vfill
+\end{frame}
+}
+
+\begin{frame}{在开始之前\dots}
+    \begin{itemize}
+        \item 既然我们已经有了积分这样强有力的分析工具，为什么还需要级数这样一种间断的求和方法？
+        \item 电子设备只能将实时信号转化为离散形式，再进行处理与分析
+    \end{itemize}    
+\end{frame}
+
+\section{数项级数}
+
+\begin{frame}{定义}
+    给定数列$\{a_n\}$，称和式
+    \[
+    \sum_{n=1}^{\infty}a_n=a_1+a_2+\cdots+a_n+\cdots
+    \]
+    为\textbf{无穷级数}，简称\textbf{级数}.和式中的每一项称为级数的项，$a_n$称为级数的通项或一般项.
+
+    有限项和
+    \[
+    S_n=\sum_{k=1}^{n}a_k=a_1+a_2+\cdots+a_n
+    \]
+    称为级数的前$n$项部分和.
+\end{frame}
+
+\begin{frame}{敛散性}
+    若级数$\displaystyle\sum_{n=1}^{\infty}a_n$的部分和数列$\{S_n\}$收敛，且$\displaystyle\lim_{n\rightarrow \infty}S_n=S$，则称级数$\displaystyle\sum_{n=1}^{\infty}a_n$收敛，且收敛到$S$.
+
+    \[
+    S=\lim_{n\rightarrow\infty}S_n=\sum_{n=1}^{\infty}a_n
+    \]
+
+    若$\{S_n\}$发散则称级数$\displaystyle\sum_{n=1}^{\infty}a_n$发散.
+\end{frame}
+
+\begin{frame}{级数的线性运算}
+    \begin{align*}
+        \sum_{n=1}^{\infty}a_n=S,c\in\mathbb R\quad&\Rightarrow\quad \sum_{n=1}^{\infty}c\ a_n=cS\\
+        \sum_{n=1}^{\infty}a_n=S,\ \sum_{n=1}^{\infty}b_n=T \quad&\Rightarrow\quad\sum_{n=1}^{\infty}(a_n+b_n)=S+T
+    \end{align*}
+\end{frame}
+
+\begin{frame}{敛散性的不变性}
+    \begin{itemize}
+        \item 增、删、改有限项，级数的敛散性不变
+        \item 若级数收敛到$S$，则对其相邻若干项加括号并为一项后，级数仍然收敛到$S\qquad$ （逆命题不成立）
+        \item 若级数收敛，则$\displaystyle\lim_{n\rightarrow\infty}a_n=0$
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{例}
+    判断以下级数的敛散性，并求收敛级数的和
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item [(1)] $\displaystyle\sum_{n=1}^{\infty}\frac{3^n+(-2)^n}{6^n}$
+                \item [(3)] $\displaystyle\sum_{n=1}^{\infty}\ln \frac{n}{n+1}$
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item [(2)] $\displaystyle\sum_{n=1}^{\infty}\frac{1}{n(n+2)}$
+                \item [(4)] $\displaystyle\sum_{n=1}^{\infty}\left(\frac{n}{n+1}\right)^n$
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    
+\end{frame}
+
+\section{正项级数}
+
+\begin{frame}{收敛原理}
+    \begin{itemize}
+        \item 正项级数：$\forall n,\ a_n\ge 0$的级数
+    \end{itemize}
+    
+    \vspace{5pt}
+
+    \begin{itemize}
+        \item 正项级数$\displaystyle\sum_{n=1}^{\infty}a_n$收敛的充要条件是其部分和数列$\{S_n\}$有上界
+        \item 推论：若级数$\displaystyle\sum_{n=1}^{\infty}a_n$满足：$\exists\ N>0$，使得当$n>N$时，有$a_n\ge 0$，那么级数$\displaystyle\sum_{n=1}^{\infty}a_n$收敛的充要条件是$\displaystyle\sum_{n=1}^{\infty}a_n$
+        的部分和数列$\{S_n\}$有上界.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{$p$级数}
+    讨论$\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^p}$的敛散性.
+\end{frame}
+
+\begin{frame}
+    
+\end{frame}
+
+\begin{frame}{比较判别法}
+    若$\displaystyle\sum_{n=1}^{\infty}a_n$和$\displaystyle\sum_{n=1}^{\infty}b_n$均为正项级数，且$\exists N\in \mathbb Z^+$，使得当$n>N$时，
+    \[
+    a_n\le b_n
+    \]
+    那么：
+    
+    \begin{itemize}
+        \item 当$\displaystyle\sum_{n=1}^{\infty}b_n$收敛时，$\displaystyle\sum_{n=1}^{\infty}a_n$也收敛；
+        \item 当$\displaystyle\sum_{n=1}^{\infty}a_n$发散时，$\displaystyle\sum_{n=1}^{\infty}b_n$也发散.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{比较判别法的极限形式}
+    设$a_n\ge 0$且$b_n>0\ (n\in\mathbb N^+)$，又$\displaystyle\lim_{n\rightarrow\infty}\frac{a_n}{b_n}=l$（或$+\infty$），那么
+    \begin{itemize}
+        \item [(1)] 当$0<l<+\infty$时，级数$\displaystyle\sum_{n=1}^{\infty}a_n$与$\displaystyle\sum_{n=1}^{\infty}b_n$有相同的敛散性；
+        \item [(2)] 当$l=0$时，由$\displaystyle\sum_{n=1}^{\infty}b_n$收敛可得$\displaystyle\sum_{n=1}^{\infty}a_n$收敛；
+        \item [(3)] 当$l=+\infty$时，由$\displaystyle\sum_{n=1}^{\infty}a_n$发散可得$\displaystyle\sum_{n=1}^{\infty}b_n$发散.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}{$p$-判别法}
+    设$\displaystyle\sum_{n=1}^{\infty}a_n$是正项级数，且$\displaystyle\lim_{n\rightarrow\infty}n^pa_n=l$（或$+\infty$），那么
+    \begin{itemize}
+        \item [(1)] 当$0\le l<+\infty$，且$p>1$时，$\displaystyle\sum_{n=1}^{\infty}a_n$收敛；
+        \item [(2)] 当$0< l\le+\infty$，且$p\le1$时，$\displaystyle\sum_{n=1}^{\infty}a_n$发散.
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{例11.9, 11.10}
+    判断下列级数的敛散性：
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item [(1)]$\displaystyle\sum_{n=1}^{\infty}\frac{1}{\sqrt{n^3-n+1}}$
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item [(2)]$\displaystyle\sum_{n=1}^{\infty}a^{\ln\frac1n}\ (a>0)$
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}{比值判别法}
+    设$\displaystyle\sum_{n=1}^{\infty}a_n$是正项级数，且$\displaystyle\lim_{n\rightarrow\infty}\frac{a_{n+1}}{a_n}=l$（或$+\infty$），那么
+    \begin{itemize}
+        \item [(1)] 当$0\le l <1$时，级数$\displaystyle\sum_{n=1}^{\infty}a_n$收敛；
+        \item [(2)] 当$1<l<+\infty$时，级数$\displaystyle\sum_{n=1}^{\infty}a_n$发散.
+    \end{itemize}
+    注意：$l=1$则不可用此方法判断
+\end{frame}
+
+\begin{frame}{根值判别法}
+    设$\displaystyle\sum_{n=1}^{\infty}a_n$是正项级数，且$\displaystyle\lim_{n\rightarrow\infty}\sqrt[n]{a_n}=l$（或$+\infty$），那么
+    \begin{itemize}
+        \item [(1)] 当$0\le l <1$时，级数$\displaystyle\sum_{n=1}^{\infty}a_n$收敛；
+        \item [(2)] 当$1<l<+\infty$时，级数$\displaystyle\sum_{n=1}^{\infty}a_n$发散.
+    \end{itemize}
+    注意：$l=1$则不可用此方法判断
+\end{frame}
+
+\begin{frame}{积分判别法}
+    设$\displaystyle\sum_{n=1}^{\infty}a_n$是正项级数，若非负函数$f(x)$在$[1,+\infty)$上单调减少，且$\forall n\in \mathbb Z^+,\ a_n=f(n)$，
+    则级数$\displaystyle\sum_{n=1}^{\infty}a_n$与反常积分$\displaystyle\int_1^{+\infty}f(x)\mathrm dx$的敛散性相同.
+\end{frame}
+
+\begin{frame}[t]{例}
+    判断下列级数的敛散性：
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item [(1)] $\displaystyle\sum_{n=1}^{\infty}\frac{n^3}{3^n}$
+                \item [(3)] $\displaystyle\sum_{n=1}^{\infty}\left(2n\arcsin\frac1n\right)^{n/2}$
+                \item [(5)] $\displaystyle\sum_{n=1}^{\infty}\frac{(2n-1)!!}{n!}$
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item [(2)] $\displaystyle\sum_{n=1}^{\infty}3^n\cdot\left(\frac{n}{n+1}\right)^{n^2}$
+                \item [(4)] $\displaystyle\sum_{n=1}^{\infty}\frac{\arctan n}{n^2+1}$
+                \item [(6)] $\displaystyle\sum_{n=1}^{\infty}ne^{-n^2}$
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    
+\end{frame}
+
+\begin{frame}[t]{习题11 T10}
+    证明：
+    \begin{itemize}
+        \item [(1)] 若$a_n\ge 0$，且$\displaystyle\sum_{n=1}^{\infty}a_n$收敛，则$\displaystyle\sum_{n=1}^{\infty}a_n^2$收敛
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{习题11 T10}
+    证明：
+    \begin{itemize}
+        \item [(2)] 若$a_n\ge 0$，且数列$\{na_n\}$收敛，则$\displaystyle\sum_{n=1}^{\infty}a_n^2$收敛
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{习题11 T10}
+    证明：
+    \begin{itemize}
+        \item [(3)] 若$a_n\ge 0,\ b_n\ge 0$，且$\displaystyle\sum_{n=1}^{\infty}a_n$和$\displaystyle\sum_{n=1}^{\infty}b_n$都收敛，则$\displaystyle\sum_{n=1}^{\infty}a_nb_n$和$\displaystyle\sum_{n=1}^{\infty}(a_n+b_n)^2$都收敛；
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{习题11 T10}
+    证明：
+    \begin{itemize}
+        \item [(4)] 若$a_n\ge 0$，且$\displaystyle\sum_{n=1}^{\infty}a_n$收敛，则$\displaystyle\sum_{n=1}^{\infty}\frac{a_n}{n}$收敛
+    \end{itemize}
+\end{frame}
+
+\begin{frame}[t]{习题11 T10}
+    证明：
+    \begin{itemize}
+        \item [(5)] 若数列$\{na_n\}$收敛，且$\displaystyle\sum_{n=1}^{\infty}n(a_n-a_{n-1})$收敛，则$\displaystyle\sum_{n=1}^{\infty}a_n$收敛
+    \end{itemize}
+\end{frame}
+
+\section{交错级数}
+
+\begin{frame}{Leibniz判别法}
+    各项正负相间，即形如$\displaystyle\pm\sum_{n=1}^{\infty}(-1)^{n-1}a_n\ (a_n>0)$的级数称为交错级数.
+
+    若交错级数$\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}a_n$满足：
+    \begin{itemize}
+        \item [(1)] $0<a_{n+1}\le a_n\ (n\in\mathbb Z^+)$
+        \item [(2)] $\lim_{n\rightarrow\infty}a_n=0$
+    \end{itemize}
+    则级数$\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}a_n$收敛，且其余项级数满足
+    
+    $$\left|\sum_{k=n+1}^{\infty}(-1)^{n-1}a_n\right|\le a_{n+1}$$
+\end{frame}
+
+\begin{frame}{绝对收敛与条件收敛}
+    设$\displaystyle\sum_{n=1}^{\infty}a_n$是任意项级数.若级数$\displaystyle\sum_{n=1}^{\infty}|a_n|$收敛，则称$\displaystyle\sum_{n=1}^{\infty}a_n$绝对收敛；
+    若级数$\displaystyle\sum_{n=1}^{\infty}|a_n|$发散而$\displaystyle\sum_{n=1}^{\infty}a_n$收敛，则称级数$\displaystyle\sum_{n=1}^{\infty}a_n$条件收敛.
+
+    \vspace{30pt}
+
+    若$\displaystyle\sum_{n=1}^{\infty}a_n$绝对收敛，则$\displaystyle\sum_{n=1}^{\infty}a_n$收敛.
+\end{frame}
+
+\begin{frame}{绝对收敛级数的性质}
+    若级数$\displaystyle\sum_{n=1}^{\infty}a_n$绝对收敛，那么任意交换其各项的次序所得的新级数仍绝对收敛，且其和不变.
+
+    \vspace{30pt}
+
+    条件收敛的级数无此性质.
+\end{frame}
+
+\begin{frame}[t]{例}
+    考察交错级数$\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}\frac{1}{\sqrt{n}}$的敛散性.
+\end{frame}
+
+\begin{frame}[t]{例}
+    判断下列级数的敛散性，并说明是绝对收敛还是条件收敛
+    \begin{columns}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item [(1)] $\displaystyle\sum_{n=1}^{\infty}(-1)^{n+1}\ln\frac{n}{n+1}$
+                \item [(3)] $\displaystyle\sum_{n=1}^{\infty}\left(\frac{1-3n}{3+4n}\right)^{n}$
+            \end{itemize}
+        \end{column}
+        \begin{column}{0.5\textwidth}
+            \begin{itemize}
+                \item [(2)] $\displaystyle\sum_{n=1}^{\infty}(-1)^{n+1}\frac{(2n+3)!!}{(2n)!!}$
+                \item [(4)] $\displaystyle\sum_{n=2}^{\infty}\sin\left(n\pi+\frac{1}{\ln n}\right)$
+            \end{itemize}
+        \end{column}
+    \end{columns}
+\end{frame}
+
+\begin{frame}
+    
+\end{frame}
+
+\end{document}
