@@ -1,0 +1,1089 @@
+\documentclass[]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{xeCJK}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{mathtools}
+\usepackage{utopia} %font utopia imported
+\usetheme{CambridgeUS}
+\usecolortheme{dolphin}
+\usefonttheme{professionalfonts}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{extarrows}
+\usepackage{tabularx}
+\usepackage{booktabs}
+
+% 字体设置
+\setCJKmainfont{SourceHanSansSC-Regular.otf}[Path=../fonts/, BoldFont=bold.otf]
+
+\setbeamerfont{title}{size=\Large}
+\setbeamerfont{subtitle}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{institute}{size=\small}
+
+\setstretch{1.3}
+
+% ↓↓↓ Modify this ↓↓↓
+\title{高等数学I\quad 习题课17}
+\subtitle{期末复习}
+\date[2026.1.6]{2026.1.6}
+% ↑↑↑ Modify this ↑↑↑
+
+\author[上海科技大学]{}
+\institute[]{上海科技大学}
+
+\begin{document}
+
+\begin{frame}
+    \vspace{15pt}
+    \titlepage
+\end{frame}
+
+\begin{frame}{目录}
+    \vfill
+    \tableofcontents[hideallsubsections]
+    \vfill
+\end{frame}
+
+\AtBeginSection[]
+{
+\begin{frame}{目录}
+    \vfill
+    \tableofcontents[currentsection,hideallsubsections]
+    \vfill
+\end{frame}
+}
+
+% ============================================================
+% 1. 函数
+% ============================================================
+\section{函数}
+
+\begin{frame}{等价关系}
+    \begin{block}{逻辑基础}
+        \begin{itemize}
+            \item $P\Leftrightarrow Q$等价于$P\Rightarrow Q \wedge Q\Rightarrow P$
+            \item 当$P$成立，有$Q\cdots P\Rightarrow Q$
+            \item $P$成立，仅当$Q$成立$\cdots Q\Rightarrow P$
+        \end{itemize}
+    \end{block}
+    
+    \begin{alertblock}{注意}
+        \begin{itemize}
+            \item 证明\textbf{当且仅当}类命题时，一定既要证明充分性，也要证明必要性
+        \end{itemize}
+    \end{alertblock}
+    More in SI120 / Discrete Mathematics \dots
+\end{frame}
+
+\begin{frame}{反证法}
+    \begin{block}{常用证明方法}
+        \begin{itemize}
+            \item 证明逆否命题法 \textit{Proof by contrapositive}
+            \begin{itemize}
+                \item 通过证明$\neg Q\Rightarrow \neg P$来证明$P\Rightarrow Q$
+            \end{itemize}
+            \item 归谬法 \textit{Proof by contradiction}
+            \begin{itemize}
+                \item 作出假设，通过数学推断得到矛盾
+            \end{itemize}
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{数学归纳法}
+    \begin{block}{基本思想}
+        为了证明一个命题$P(n)$对\textbf{有限的}整数$n\ge n_0$成立，只需证明：
+        \begin{itemize}
+            \item $P(n_0)$成立$\qquad$(大多数时候，$n_0=0$或$1$)
+            \item $\forall k\ge n_0, P(k)\Rightarrow P(k+1)$
+        \end{itemize}
+    \end{block}
+
+        理解：多米诺骨牌
+
+        复习：习题课02
+\end{frame}
+
+\begin{frame}{单调性}
+    \begin{definition}[单调性定义]
+        记$D$为函数的定义域
+        \begin{itemize}
+            \item 函数单调递增$\Leftrightarrow \forall x,y\in D, x<y\Rightarrow  f(x)\le f(y)$
+            \item 函数\textbf{严格}单调递增$\Leftrightarrow \forall x,y\in D,x<y\Rightarrow f(x) < f(y)$
+        \end{itemize}
+    \end{definition}
+    
+    注意与其他教材的区别
+\end{frame}
+
+\begin{frame}{周期性}
+    \begin{definition}[周期函数]
+        函数$f(x)$是周期函数，当且仅当
+        \[
+        \exists T\in \mathbb R, T>0,\forall x\in\mathbb D,f(x)=f(x+T)
+        \]
+    \end{definition}
+\end{frame}
+
+\begin{frame}{方程与隐函数}
+    \begin{block}{隐函数概念}
+        \begin{itemize}
+            \item 如果方程$F(x,y)=0$定义了函数$y=f(x)$，我们称$F(x,y)=0$为$y=f(x)$的\textbf{隐性定义}或\textbf{隐函数方程}.
+            \item 一个方程通常不能定义一个隐函数（例:$x^2+y^2=1$），但是方程经常在一个点的邻域定义一个隐函数.
+            \item 方程中$x$和$y$的地位是\textbf{平等}的，因此隐函数的自变量可以选$x$或$y$
+        \end{itemize}
+    \end{block}
+
+    \begin{alertblock}{隐函数定理}
+        \begin{itemize}
+            \item 方程是否局部定义了一个函数，是重要的\textbf{隐函数定理}的内容.
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{参数方程与极坐标}
+    \begin{block}{参数方程}
+        \begin{itemize}
+            \item 有些图形可以使用$x=\varphi(t),y=\psi(t)$的方程组来描述，此时，$x,y$都是一个参数$t$的函数，给定一个确定的参数$t$，能够找到唯一一组$(x,y)$.
+            \item 消去参数$t$得到一个方程，可能定义了一个隐函数.
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{极坐标}
+        \begin{itemize}
+            \item 极坐标系：使用$r$表示点到原点的距离，$\theta$表示点与原点连线和$x+$的夹角
+            \item 唯一确定一个点$(r,\theta) \Rightarrow (x=r\cos\theta,y=r\sin\theta)$
+            \item 一般地，约定$0\le r<+\infty,0\le\theta<2\pi$
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+% ============================================================
+% 2. 极限与连续
+% ============================================================
+\section{极限与连续}
+
+\begin{frame}{数列极限的定义}
+    \begin{definition}[数列极限]
+        对数列$\{x_n\}$，若
+        \[
+        \exists L\in\mathbb R,\ \forall \varepsilon>0,\ \exists N\in\mathbb N,\ \forall n>N,\ |x_n-L|<\varepsilon
+        \]
+        则称数列$\{x_n\}$的\textbf{极限}为$L$，或$\{x_n\}$\textbf{收敛}于$L$，记
+        \[
+        \lim_{n\rightarrow\infty}x_n=L\qquad\text{或}\qquad x_n\rightarrow L(n\rightarrow \infty)
+        \]
+    \end{definition}
+\end{frame}
+
+\begin{frame}{性质}
+    \begin{block}{数列极限的性质}
+        \begin{itemize}
+            \item 唯一性：收敛数列的极限唯一
+            \item 有界性：收敛数列是有界的
+            \item 改变/删除/增加 有限个项，数列的收敛性不变
+            \item 保序性：若$\displaystyle\lim_{n\rightarrow\infty}x_n=A>B=\lim_{n\rightarrow\infty}y_n$，
+            
+            \vspace{3pt}\hspace{3.7em}     则$\exists N\in \mathbb N,\ \forall n>N,\ x_n>y_n$
+            \item 保号性：保序性中取$y_n=0$
+            \item 归并性：$\displaystyle\lim_{n\rightarrow\infty}x_n=L\Leftrightarrow \forall \text{单增数列}\{n_k\}\subset\mathbb N,\lim_{k\rightarrow\infty}x_{n_k}=L$
+            \item 极限和四则运算的顺序可以交换    
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{判定}
+    \begin{block}{判定方法}
+        \begin{itemize}
+            \item 夹逼定理
+            \item 单调有界数列收敛定理
+            \item 区间套定理
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{函数极限的定义}
+    \begin{definition}[函数极限]
+        设函数在一点$a$的\textbf{去心邻域}$\dot U(a)$有定义，若
+        \[
+        \exists L\in\mathbb R,\ \forall \varepsilon >0,\ \exists \delta>0,\ \forall x\in \dot U(a,\delta),\ |f(x)-L|<\varepsilon
+        \]
+        则称当$x$趋近于$a$时，函数$f(x)$的\textbf{极限}为$L$或函数$f(x)$\textbf{收敛}于$L$，记为
+        \[
+        \lim_{x\rightarrow a}f(x)=L\qquad\text{或}\qquad f(x)\rightarrow L(x\rightarrow a)
+        \]
+    \end{definition}
+\end{frame}
+
+\begin{frame}{无穷情况}
+    \begin{block}{无穷远处的极限}
+        若函数在$|x|>X$区间内有定义，且
+        \[
+        \exists L\in\mathbb R,\ \forall \varepsilon >0,\ \exists X_0>X,\ \forall |x|>X_0,\ |f(x)-L|<\varepsilon
+        \]
+        则称当$x$趋近于$\infty$时，函数$f(x)$的\textbf{极限}为$L$或函数$f(x)$\textbf{收敛}于$L$，记为
+        \[
+        \lim_{x\rightarrow a}f(x)=L\qquad\text{或}\qquad f(x)\rightarrow L(x\rightarrow a)
+        \]
+        类似地，我们可以给出左极限、右极限、发散的定义.
+    \end{block}
+\end{frame}
+
+\begin{frame}{性质}
+    \begin{block}{函数极限的性质}
+        \begin{itemize}
+            \item 唯一性：在一点收敛的函数在该点的极限唯一
+            \item 局部有界性：在一点收敛的函数在该点的某邻域有界
+            \item 局部保序性：若$\displaystyle\lim_{x\rightarrow a}f(x)=A>B=\lim_{x\rightarrow a}g(x)$，
+            
+            \hspace{6em}则$\exists \delta>0,\ \forall x\in \dot U(a,\delta),\ f(x)>g(x)$.
+            \item 局部保号性：$g(x)=0$
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{判定}
+    \begin{block}{判定方法}
+        \begin{itemize}
+            \item 夹逼定理
+            \item 单调有界单侧极限存在定理
+            \item 海涅定理：
+            \[
+            \lim_{x\rightarrow a}f(x)=L\ \ \Leftrightarrow\ \  \forall \{x_n\},(\lim_{n\rightarrow\infty}x_n = a, x_n\ne a)\Rightarrow \lim_{n\rightarrow \infty}f(x_n)=L
+            \]
+            \item 海涅定理适合用于证明极限不存在，不便用于证明极限存在
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{无穷小的定义}
+    \setstretch{1.0}
+    若$x\rightarrow a$时（$a$可能是$\infty$）,$f(x)\rightarrow0$且$g(x)\rightarrow 0$，则：
+    \begin{itemize}
+        \item $f(x)$是$g(x)$的\textbf{高阶无穷小}，记$f(x)=o(g(x))$,当且仅当\[\displaystyle\lim_{x\rightarrow a}\frac{f(x)}{g(x)}=0\]
+        \item $f(x)$是$g(x)$的\textbf{同阶无穷小}，记$f(x)=O(g(x))$,当且仅当\[\displaystyle\lim_{x\rightarrow a}\frac{f(x)}{g(x)}=c,c\ne 0\]
+        \item $f(x)$是$g(x)$的\textbf{等价无穷小}，记$f(x)\sim g(x)$,当且仅当\[\displaystyle\lim_{x\rightarrow a}\frac{f(x)}{g(x)}=1\]
+    \end{itemize}
+\end{frame}
+
+\setstretch{1.3}
+
+\begin{frame}{无穷小的阶数}
+    \begin{block}{阶数与主部}
+        若$x\rightarrow a$时，$f(x)$是与$(x-a)^k (k>0)$同阶的无穷小，我们称$f(x)$是$(x-a)$的$k$\textbf{阶无穷小}.
+
+        若$\displaystyle \lim_{x\rightarrow a}\frac{f(x)}{(x-a)^k}=c\ne0$，则称$c(x-a)^k$是$f(x)$的\textbf{主部}，此时我们有
+        \[
+        f(x)=c(x-a)^k+o((x-a)^k)
+        \]
+    \end{block}
+    
+    \begin{alertblock}{替换规则}
+        \begin{itemize}
+            \item 乘除中的等价无穷小可以替换，加减中的等价无穷小\textbf{有条件地}替换（主部不抵消）
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{函数连续性的定义}
+    \begin{definition}[连续性]
+        若函数$f(x)$在一点$x_0$的邻域内有定义，则$f$在该点\textbf{连续}，当且仅当函数在该点的极限存在且等于该点的函数值，即
+        \[
+        \lim_{x\rightarrow x_0}f(x)=f(x_0)
+        \]
+        或
+        \[
+        \forall \varepsilon>0,\ \exists \delta>0,\ \forall x\in (x_0-\delta,x_0+\delta),\ |f(x)-f(x_0)|<\varepsilon.
+        \]
+    \end{definition}
+
+    \begin{block}{备注}
+        \begin{itemize}
+            \item 将极限换为左、右极限，则得到左、右连续的定义
+            \item 所有初等函数在其定义域区间内连续，在区间的端点处单侧连续
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{间断点的分类}
+    \begin{block}{分类}
+        \begin{itemize}
+            \item 第一类间断点：左、右极限都存在
+            \begin{itemize}
+                \item 左右极限相等：可去间断点，表现为从完整的函数图像上挖去了一个点
+                \item 左右极限不相等：跳跃间断点，表现为函数图像上出现了不连续的函数值变化（且变化前后都为有限值）
+            \end{itemize}
+            \item 第二类间断点：左、右极限不都存在
+            \begin{itemize}
+                \item 其中之一为无穷：无穷间断点
+                \item 极限都不为无穷，但极限也不存在：振荡间断点（典例：$\sin\frac1x$）
+            \end{itemize}
+        \end{itemize}
+    \end{block}
+    
+    \begin{exampleblock}{要求}
+        \begin{itemize}
+            \item 学会求间断点的值、判断间断点的类型
+        \end{itemize}
+        
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{闭区间上连续函数的性质}
+    \begin{block}{三大性质}
+        \begin{itemize}
+            \item 有界性：闭区间上的连续函数有界
+            \item 最值存在：闭区间上的连续函数在区间上能取到最值
+            \item 介值性：最大最小值之间的任何实数都可以在区间上取到
+        \end{itemize}
+    \end{block}
+    
+    \begin{alertblock}{结论}
+        \begin{itemize}
+            \item 连续函数将闭区间映射为闭区间
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+% ============================================================
+% 3. 导数与微分
+% ============================================================
+\section{导数与微分}
+
+\begin{frame}{导数}
+    \begin{definition}[导数定义]
+        设函数$f(x)$在$x_0$的某邻域有定义，若极限
+        \[
+        \lim_{\Delta x\rightarrow 0}\frac{f(x_0+\Delta x)-f(x_0)}{\Delta x}=\lim_{x\rightarrow x_0}\frac{f(x)-f(x_0)}{x-x_0}
+        \]
+        存在，则称$f(x)$在$x_0$可导，上述极限称为该函数在$x_0$处的\textbf{导数}，记作：
+        \[
+        \begin{array}{ccc}
+            f'(x_0) \tiny\textit{(Lagrange)} & \left.\frac{\mathrm df}{\mathrm dx}\right|_{x=x_0} \tiny\textit{(Leibniz)} & \dot f(x_0) \tiny\textit{(Newton)}
+        \end{array}
+        \]
+    \end{definition}
+
+    \begin{block}{备注}
+        \begin{itemize}
+            \item 将上述极限换为左、右极限，得到左、右导数的定义.
+            \item 可导$\Rightarrow$连续，反之不一定.（魏尔斯特拉斯函数）
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{导函数}
+    \begin{definition}[导函数]
+        若函数$f(x)$在区间$I$内的每一点上都可导，且在区间闭端点处单侧可导，则称函数在区间上可导，记$f\in D(I)$. 此时，称
+        \[
+        x\in I,\ f(x)\in\mathbb R;\qquad x\mapsto f'(x)
+        \]
+        $f'(x)$为$f(x)$的\textbf{导函数}，常简称为导数
+    \end{definition}
+\end{frame}
+
+\begin{frame}{微分的定义}
+    \begin{definition}[微分]
+        设函数$f(x)$在$x_0$的某邻域有定义，若$\Delta x\rightarrow 0$时，有常数$A$使得
+        \[
+        f(x_0+\Delta x)=f(x_0)+A\cdot \Delta x + o(\Delta x)
+        \]
+        则称$f(x)$在$x_0$处\textbf{可微}，将$f(x)$在$x_0$处的微分记作$\mathrm df|_{x=x_0}=A\mathrm dx$.
+    \end{definition}
+    
+    \begin{block}{可微与可导}
+        \begin{itemize}
+            \item 可微$\Leftrightarrow$可导，且$\mathrm df|_{x=x_0}=f'(x_0)\mathrm dx$
+            \item 微分与导数有区别，但对于一元实函数，类似于一个数与一个$1\times 1$矩阵的区别.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{高阶导数}
+    \begin{block}{定义}
+        若导函数在{一点可导}，称函数在该点\textbf{二阶可导}，且导函数在该点的导数为\textbf{二阶导数}.如果在区间上每一点都二阶可导，就有\textbf{二阶导函数}.
+        
+        依此类推可以定义$n$阶可导$(f\in D^{(n)}(I))$、$n$阶导函数$f^{(n)}$或$\displaystyle\frac{\mathrm d^n f}{\mathrm dx^n}$
+    \end{block}
+\end{frame}
+
+\begin{frame}
+    \centering
+    \LARGE {期中考前内容\  结束}
+\end{frame}
+
+% ============================================================
+% 4. 微分中值定理
+% ============================================================
+\section{微分中值定理}
+
+\begin{frame}{费马定理}
+    \begin{theorem}[费马定理]
+        设函数$f(x)$在点$x_0$取得极值，且$f(x)$在$x_0$可导，则$f'(x_0)=0$.
+    \end{theorem}
+
+    \begin{block}{驻点}
+        \begin{itemize}
+            \item 导数值为$0$的点称为函数的\textbf{驻点}.
+            \item 驻点一定是极值点吗？
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\subsection{罗尔定理}
+
+\begin{frame}{罗尔定理}
+    \begin{theorem}[罗尔定理]
+        设函数$f(x)$满足：
+        \begin{itemize}
+            \item 在闭区间$[a,b]$上连续
+            \item 在开区间$(a,b)$上可导
+            \item $f(a)=f(b)$
+        \end{itemize}
+        则$\exists \xi\in(a,b)$，使得
+        \[
+        f'(\xi)=0.
+        \]
+    \end{theorem}
+    \begin{block}{思考}
+        \begin{itemize}
+            \item 尝试用数学语言，一句话写出罗尔定理
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{拉格朗日定理}
+    \begin{theorem}[拉格朗日定理]
+        设函数$f(x)$满足：
+        \begin{itemize}
+            \item 在闭区间$[a,b]$连续
+            \item 在开区间$(a,b)$可导
+        \end{itemize}
+        则
+        \[
+        \exists\ \xi\in(a,b),\ \text{s.t.}\ f'(\xi)=\frac{f(b)-f(a)}{b-a}.
+        \]
+    \end{theorem}
+    不难看出，罗尔定理是拉格朗日定理的特殊形式.
+\end{frame}
+
+\begin{frame}{柯西定理}
+    \begin{theorem}[柯西定理]
+        设函数$f(t)$和$g(t)$满足：
+        \begin{itemize}
+            \item 在闭区间$[a,b]$连续
+            \item 在开区间$(a,b)$可导，且$\forall\ t\in(a,b),\ g'(t)\ne0$
+        \end{itemize}
+        则
+        \[
+        \exists\ \xi\in(a,b),\ \text{s.t.}\ \frac{f(b)-f(a)}{g(b)-g(a)}=\frac{f'(\xi)}{g'(\xi)}.
+        \]
+    \end{theorem}
+    不难看出，拉格朗日定理是柯西定理的特殊形式.
+\end{frame}
+
+\begin{frame}{达布定理}
+    \begin{theorem}[达布定理]
+        若函数$f(x)$在闭区间$[a,b]$上可导，且$f'_+(a)<f'_-(b)$，则
+        \[
+        \forall\ c\in(f'_-(a),f'_+(b)),\ \exists\ \xi\in(a,b),\ \text{s.t.}\ f'(\xi)=c.
+        \]
+    \end{theorem}
+    \begin{alertblock}{结论}
+        \begin{itemize}
+            \item 导函数即使不连续，也有介值性
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{导函数的极限}
+    \begin{block}{结论}
+        设$\delta > 0$，函数$f(x)$在$[x_0,x_0+\delta)$上连续，在$(x_0,x_0+\delta)$内可导，若$\lim\limits_{x\rightarrow x_0^+}f'(x)=A$存在，则
+        $f(x)$在点$x_0$有右导数，且$f_+'(x_0)=A$.
+    \end{block}
+
+    \begin{block}{备注}
+        \begin{itemize}
+            \item 修改所有与右导数相关的内容为左导数，命题依然成立.
+            \item 即，若函数在某点的单侧邻域内连续且可导，则该点的单侧导数存在且等于到函数的极限.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{洛必达法则}
+    \begin{theorem}[洛必达法则 (0/0)]
+        设函数$f(x)$和$g(x)$在点$x_0$的某个去心邻域$\dot U(x_0,\delta)$内有定义，且满足：
+        \begin{itemize}
+            \item $\lim\limits_{x\rightarrow x_0} f(x)=0,\lim\limits_{x\rightarrow x_0} g(x)=0$
+            \item $f(x)$，$g(x)$在该去心邻域内可导，且$g'(x)\ne 0$
+            \item $\displaystyle\lim_{x\rightarrow x_0}\frac{f'(x)}{g'(x)}=A$（$A$为常数或$\infty$）
+        \end{itemize}
+        则
+        \[
+        \lim_{x\rightarrow x_0}\frac{f(x)}{g(x)}=\lim_{x\rightarrow x_0}\frac{f'(x)}{g'(x)}=A
+        \]
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{洛必达法则}
+    \begin{theorem}[洛必达法则 ($\infty/\infty$)]
+        设函数$f(x)$和$g(x)$在点$x_0$的某个去心邻域$\dot U(x_0,\delta)$内有定义，且满足：
+        \begin{itemize}
+            \item $\lim\limits_{x\rightarrow x_0} g(x)=\infty$
+            \item $f(x)$，$g(x)$在该去心邻域内可导，且$g'(x)\ne 0$
+            \item $\displaystyle\lim_{x\rightarrow x_0}\frac{f'(x)}{g'(x)}=A$（$A$为常数或$\infty$）
+        \end{itemize}
+        则
+        \[
+        \lim_{x\rightarrow x_0}\frac{f(x)}{g(x)}=A
+        \]
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{使用原则}
+    \begin{block}{洛必达法则的本质}
+        \begin{itemize}
+            \item 函数在$x=x_0$处的比值\ 等价于\\ 函数在$\dot U(x_0)$内近似直线斜率的比值在$x\rightarrow x_0$时的极限
+            \item 与泰勒公式等价
+        \end{itemize}
+    \end{block}
+    
+    \begin{alertblock}{使用原则}
+        \begin{itemize}
+            \item 使用前先尽可能化简
+            \item 确保条件均成立：\\0/0或$\infty/\infty$，去心邻域内可导，上下求导后极限存在
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{泰勒定理 1}
+    \begin{theorem}[佩亚诺余项]
+        设函数$f(x)$在点$x_0$的邻域内有定义，且在$x_0$有$n$阶导数，那么
+        \[
+        f(x)=f(x_0)+f'(x_0)(x-x_0)+\cdots+\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+o((x-x_0)^n)
+        \]
+        其中$o((x-x_0)^n)$称为佩亚诺余项，定理结论称为$f(x)$的带佩亚诺余项的$n$阶泰勒公式.
+    \end{theorem}
+    一个确定函数的泰勒公式中，多项式的系数是确定的.
+\end{frame}
+
+\begin{frame}{泰勒定理 2}
+    \begin{theorem}[拉格朗日余项]
+        设函数$f(x)$在包含点$x_0$的开区间$(a,b)$内具有$n+1$阶导数，则$\forall x\in(a,b)$，有 
+        \[
+        f(x)=f(x_0)+f'(x_0)(x-x_0)+\cdots+\frac{f^{(n)}(x_0)}{n!}(x-x_0)^n+\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}
+        \]
+        其中$\xi$介于$x_0$与$x$之间.
+
+        \vspace{0.5cm}
+
+        $\displaystyle\frac{f^{(n+1)}(\xi)}{(n+1)!}(x-x_0)^{n+1}$称为拉格朗日余项.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{麦克劳林公式}
+    \begin{block}{定义}
+        在$0$处的泰勒公式. 课本P176$\sim$177
+    \end{block}
+\end{frame}
+
+\begin{frame}{函数性态}
+    \begin{definition}[驻点]
+        使导数等于$0$的点称为函数的\textbf{驻点}.
+    \end{definition}
+
+    \begin{theorem}[费马定理]
+        \begin{itemize}
+            \item $x_0$是$f(x)$的极值点，且$f(x)$在$x_0$处可导，则$x_0$是$f(x)$的驻点.
+        \end{itemize}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{单调性}
+    \begin{theorem}[单调性判定]
+        设$f(x)\in C[a,b]\cap D(a,b)$，则
+        \begin{itemize}
+            \item $f(x)$在$[a,b]$上\textbf{单调增（减）}当且仅当$f'(x)$在区间内处处非负（正），且在任何子区间上不恒为$0$.
+        \end{itemize}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{极值}
+    \begin{block}{第一充分条件}
+        设函数$f$在$x_0$某邻域上连续，在去心邻域上可导，
+        \begin{itemize}
+            \item 若$f'(x)$在$x_0$左邻域为负，右邻域为正，$x_0$是\textbf{极小值点}；
+            \item 若$f'(x)$在$x_0$左邻域为正，右邻域为负，$x_0$是\textbf{极大值点}；
+            \item 若$f'(x)$在$x_0$左右邻域同号，$x_0$不是极值点.
+        \end{itemize}
+    \end{block}
+
+    \begin{block}{第二充分条件}
+        设函数$f$在$x_0$有二阶导数，且$f'(x_0)=0$，
+        \begin{itemize}
+            \item 若$f''(x_0)>0,x_0$是\textbf{极小值点}；
+            \item 若$f''(x_0)<0,x_0$是\textbf{极大值点}.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{凸性}
+    \begin{definition}[凸性定义]
+        设函数$f\in C(I)$，若
+        \[
+        \forall x_1,x_2\in I,\ \forall t\in(0,1),\ f[tx_1+(1-t)x_2]\le tf(x_1)+(1-t)f(x_2)
+        \]
+        则称函数在区间$I$上是\textbf{下凸}的.若将$\le$换成$\ge$，则称函数是\textbf{上凸}的.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{凸性}
+    \begin{theorem}[凸性判定]
+        \begin{itemize}
+            \item 设$f(x)\in D(a,b)$，若$f'(x)$在$(a,b)$上严格单调增（减），则函数在$(a,b)$上是下（上）凸的.
+            \item 设$f(x)$在$(a,b)$上二阶可导，若$f''(x)>0(<0)$，则函数在$(a,b)$上是下（上）凸的.
+        \end{itemize}
+    \end{theorem}
+    
+    \begin{block}{拐点}
+        连续函数上凸和下凸区间的分界处称为\textbf{拐点}，该处函数的二阶导数为$0$.
+    \end{block}
+    More in SI251 / Convex Optimization\dots
+\end{frame}
+
+\begin{frame}{渐近线}
+    \begin{block}{定义}
+        \begin{itemize}
+            \item 若$\displaystyle\lim_{x\rightarrow x_0^\pm}f(x)=\infty,\ x=x_0$是函数图像的\textbf{垂直渐近线}.（$x_0^+$或$x_0^-$）
+            \item 若$\displaystyle\lim_{x\rightarrow\pm\infty}f(x)=b,\ y=b$是函数图像的\textbf{水平渐近线}
+            \item 若$\displaystyle\lim_{x\rightarrow\pm\infty}(f(x)-ax-b)=0,\ y=ax+b$是函数图像的\textbf{斜渐近线}.
+        \end{itemize}
+    \end{block}
+    
+    \begin{block}{计算}
+        斜渐近线可以通过$a=\displaystyle\lim_{x\rightarrow\infty}\frac{f(x)}{x},b=\lim_{x\rightarrow \infty}{(f(x)-ax)}$计算
+    \end{block}
+\end{frame}
+
+\begin{frame}{画图}
+    \begin{block}{步骤}
+        \begin{itemize}
+            \item 定义域！！！
+            \item 奇偶性，周期性
+            \item 特殊点
+            \item （一阶导数）单调区间、极值点与极值
+            \item （二阶导数）上下凸区间、拐点与拐点处函数值
+            \item 渐近线
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+% ============================================================
+% 5. 积分
+% ============================================================
+\section{积分}
+
+\begin{frame}{不定积分的定义}
+    \begin{definition}[原函数与不定积分]
+        对函数 $f:I \to \mathbb{R}$，若存在函数 $F$ 使得在区间上有 $F'(x)=f(x)$，称 $F$ 是 $f$ 的\textbf{原函数}.
+        
+        $f$ 在区间上全体原函数称为 $f(x)$ 的\textbf{不定积分}，记为：
+        \[ \int f(x)\mathrm dx = F(x) + C \]
+    \end{definition}
+
+    \begin{alertblock}{注意}
+        \begin{itemize}
+            \item 不定积分不是一个函数，而是一族函数.$C$ 称为积分常数.
+        \end{itemize}
+       
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{积分方法}
+    \begin{block}{基本积分法}
+        \begin{itemize}
+            \item \textbf{查积分表}：背？
+            \item \textbf{换元法}：
+            \[ \int f(u(x))u'(x)\mathrm dx = \int f(u)\mathrm du \]
+            \begin{itemize}
+                \item \small{从左到右：第一换元法（凑微分）；从右到左：第二换元法.}
+                \item \small{关键：跳出符号思维定式，活用“语言的任意性”.}
+            \end{itemize}
+            \item \textbf{分部积分法}：
+            \[ \int u(x)v'(x)\mathrm dx = u(x)v(x) - \int u'(x)v(x)\mathrm dx \]
+            \begin{itemize}
+                \item \small{目的：简化积分，或形成带积分的等式/递推式.}
+            \end{itemize}
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{积分方法}
+    \begin{block}{常见套路}
+        \begin{itemize}
+            \item 有理函数积分：化为多个一次与二次分式之和
+            \item 三角函数有理式积分
+            \begin{itemize}
+                \item $R(\sin x)\cos x\mathrm dx$或$R(\cos x)\sin x\mathrm dx$：转化为$R(\sin x)\mathrm d\sin x,R(\cos x)\mathrm d\cos x$
+                \item $R(\sin^2x, \cos^2x)\mathrm dx$：作代换$\tan x = u$
+                \item $\cos mx\cos nx\mathrm dx, \sin mx\sin nx\mathrm dx, \ldots$：和差化积（学会推导！）
+            \end{itemize}
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{定积分的定义}
+    \begin{definition}[黎曼积分]
+        若函数 $f$ 在 $[a,b]$ 上有界，对任意划分 $a=x_0 < \dots < x_n=b$ 及任意标记点 $\xi_i$，当 $\lambda = \max\{x_i - x_{i-1}\} \to 0$ 时，黎曼和的极限存在：
+        \[ \lim_{\lambda \to 0} \sum_{i=1}^{n} f(\xi_i)(x_i - x_{i-1}) = I \]
+        则称 $f$ 在 $[a,b]$ 上\textbf{可积}，记为 $I = \int_{a}^{b} f(x)\mathrm dx$.
+    \end{definition}
+    
+    \begin{block}{几何意义}
+        \begin{itemize}
+            \item 曲线与 $x$ 轴围成的（有号）面积.$x$ 轴上方为正，下方为负.
+        \end{itemize}
+       
+    \end{block}
+\end{frame}
+
+\begin{frame}{可积性条件}
+    \begin{block}{黎曼可积的充分条件}
+        $f$ 在 $[a,b]$ 上满足下列条件之一：
+        \begin{enumerate}
+            \item 连续；
+            \item 有界，且只有有限个间断点（分段连续）；
+            \item 单调.
+        \end{enumerate}
+    \end{block}
+
+    \begin{exampleblock}{特殊例子：黎曼函数}
+        \[
+        f(x)=\begin{cases}
+        1/n & x = m/n \in \mathbb{Q} \text{ (既约分数)}\\
+        0 & x \notin \mathbb{Q}
+        \end{cases}
+        \]
+        该函数有无穷多个间断点，处处不单调，但在闭区间上\textbf{可积}（积分为0）.
+    \end{exampleblock}
+\end{frame}
+
+\begin{frame}{定积分的性质}
+    \begin{block}{基本性质}
+        \begin{itemize}
+            \item 线性性质；区间可加性；保号性与保序性.
+        \end{itemize}
+    \end{block}
+        
+    \begin{block}{不等式性质}
+        \begin{itemize}
+            \item \textbf{估值不等式}：
+            \[ m(b-a) \le \int_a^b f(x)\mathrm dx \le M(b-a) \]
+            \item \textbf{绝对值不等式}：
+            \[ \left| \int_a^b f(x)\mathrm dx \right| \le \int_a^b |f(x)|\mathrm dx \]
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+
+\begin{frame}{积分中值定理}
+    \begin{theorem}[积分中值定理]
+        设 $f \in C[a,b], g \in R[a,b]$ 且 $g(x)$ 保号，则存在 $\xi \in [a,b]$，使得：
+        \[ \int_a^b f(x)g(x)\mathrm dx = f(\xi)\int_a^b g(x)\mathrm dx \]
+    \end{theorem}
+    \vspace{0.5em}
+    \footnotesize{\textbf{解读}：$f(\xi)$ 可视为 $f(x)$ 以 $g(x)$ 为权重的加权平均值.}
+\end{frame}
+
+\begin{frame}{变上限积分与 Newton-Leibniz 公式}
+    \begin{block}{变上限积分函数 $F(x) = \int_a^x f(t)\mathrm dt$}
+        \begin{itemize}
+            \item \textbf{连续性}：$f$ 可积 $\Rightarrow F$ 连续.
+            \item \textbf{可导性}：若 $f$ 连续，则 $F'(x) = f(x)$.
+            \item \textit{意义：变上限积分提供了为连续函数寻找原函数的方法.}
+        \end{itemize}
+    \end{block}
+
+    \begin{theorem}[Newton-Leibniz 公式]
+        若 $f$ 可积且 $F$ 是 $f$ 的一个原函数（$F$ 连续），则：
+        \[ \int_a^b f(x)\mathrm dx = F(b) - F(a) \]
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{定积分计算技巧}
+    \begin{block}{技巧与注意}
+        \begin{itemize}
+            \item \textbf{先画图！} 几何直观往往能简化问题.
+            \item \textbf{利用对称性}：
+                \begin{itemize}
+                    \item 奇偶性：奇函数在对称区间积分为0，偶函数加倍.
+                    \item 周期性.
+                \end{itemize}
+            \item \textbf{换元注意事项}：
+                \begin{itemize}
+                    \item 使用换元法时，\textbf{积分上下限}也要相应改变.
+                \end{itemize}
+        \end{itemize}
+    \end{block}
+    
+    \begin{alertblock}{思考题}
+        1. 举例：可积但是没有原函数的函数.\\
+        2. 举例：有原函数但是不可积的函数.
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{反常积分定义}
+    \begin{block}{无穷区间上的反常积分}
+        \[ \int_a^{+\infty} f(x)\mathrm dx = \lim_{b \to +\infty} \int_a^b f(x)\mathrm dx \]
+    \end{block}
+
+    \begin{block}{无界函数的反常积分（瑕积分）}
+        若 $f$ 在 $b$ 点附近无界：
+        \[ \int_a^b f(x)\mathrm dx = \lim_{\epsilon \to 0^+} \int_a^{b-\epsilon} f(x)\mathrm dx \]
+    \end{block}
+
+    \begin{alertblock}{注意}
+        \begin{itemize}
+            \item 对于在多个点反常的积分，\textbf{必须}拆分为多个仅在一个端点反常的积分之和.
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{反直觉的例子}
+    \textbf{直觉误区}：函数在正无穷远处极限不为0，或函数无界，积分一定发散吗？
+
+    \begin{exampleblock}{反例 1：无穷远处震荡/非零}
+        构造一个连续正函数 $g(x)$，在正无穷处极限不为0，但 $\int_1^{+\infty} g(x)\mathrm dx$ 收敛.（通常构造为一系列变窄变高的“尖峰”叠加）
+    \end{exampleblock}
+
+    \begin{exampleblock}{反例 2：无界函数}
+        构造函数 $f(x)$ 使得其无界，但 $\int_1^{+\infty} f(x)\mathrm dx$ 存在.
+        \[ \text{例如：} \int_0^1 \frac{1}{\sqrt{x}}\mathrm dx = 2 \text{ （虽在0处无界，但收敛）} \]
+    \end{exampleblock}
+\end{frame}
+
+
+\begin{frame}{微元法 (Method of Element)}
+    \begin{block}{核心思想}
+        定积分适用于大多数“无穷多个无穷小量相加”的情景.
+        \[ \text{总量} = \int \text{微元} \, \mathrm dx \]
+    \end{block}
+    
+    \begin{columns}[t]
+        \column{0.45\textwidth}
+        \begin{block}{几何应用}
+            \begin{itemize}
+                \item 平面图形的面积微元
+                \item 立体图形的截面体积微元
+                \item 旋转体的薄壳微体积元
+                \item 曲线的弧长微元
+            \end{itemize}
+        \end{block}
+
+        \column{0.45\textwidth}
+        \begin{alertblock}{注意事项}
+            \begin{itemize}
+                \item 难点在于找到正确的微元.
+                \item 需掌握直角坐标、极坐标、参数方程下的不同表达形式.
+            \end{itemize}
+        \end{alertblock}
+    \end{columns}
+\end{frame}
+
+% ============================================================
+% 6. 级数
+% ============================================================
+\section{级数}
+
+\begin{frame}{数项级数}
+    \begin{definition}[无穷级数]
+        给定数列$\{a_n\}$，称和式
+        \[
+        \sum_{n=1}^{\infty}a_n=a_1+a_2+\cdots+a_n+\cdots
+        \]
+        为\textbf{无穷级数}，简称\textbf{级数}.和式中的每一项称为级数的项，$a_n$称为级数的通项或一般项.
+
+        有限项和
+        \[
+        S_n=\sum_{k=1}^{n}a_k=a_1+a_2+\cdots+a_n
+        \]
+        称为级数的前$n$项部分和.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{敛散性}
+    \begin{definition}[敛散性定义]
+        若级数$\displaystyle\sum_{n=1}^{\infty}a_n$的部分和数列$\{S_n\}$收敛，且$\displaystyle\lim_{n\rightarrow \infty}S_n=S$，则称级数$\displaystyle\sum_{n=1}^{\infty}a_n$收敛，且收敛到$S$.
+
+        \[
+        S=\lim_{n\rightarrow\infty}S_n=\sum_{n=1}^{\infty}a_n
+        \]
+
+        若$\{S_n\}$发散则称级数$\displaystyle\sum_{n=1}^{\infty}a_n$发散.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{敛散性的不变性}
+    \begin{block}{性质}
+        \begin{itemize}
+            \item 增、删、改有限项，级数的敛散性不变
+            \item 若级数收敛到$S$，则对其相邻若干项加括号并为一项后，级数仍然收敛到$S\quad$（逆命题不成立）
+            \item 若级数收敛，则$\displaystyle\lim_{n\rightarrow\infty}a_n=0$
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{正项级数及其收敛原理}
+    \begin{definition}[正项级数]
+        \begin{itemize}
+            \item 正项级数：$\forall n,\ a_n\ge 0$的级数
+        \end{itemize}
+    \end{definition}
+    
+    \begin{theorem}[收敛原理]
+        \begin{itemize}
+            \item 正项级数$\displaystyle\sum_{n=1}^{\infty}a_n$收敛的充要条件是其部分和数列$\{S_n\}$有上界
+            \item 推论：若级数$\displaystyle\sum_{n=1}^{\infty}a_n$满足：$\exists\ N>0$，使得当$n>N$时，有$a_n\ge 0$，那么级数$\displaystyle\sum_{n=1}^{\infty}a_n$收敛的充要条件是$\displaystyle\sum_{n=1}^{\infty}a_n$
+            的部分和数列$\{S_n\}$有上界.
+        \end{itemize}
+    \end{theorem}
+
+    回忆：$\mathbf p$级数
+\end{frame}
+
+\begin{frame}{比较判别法}
+    \begin{theorem}[比较判别法]
+        若$\displaystyle\sum_{n=1}^{\infty}a_n$和$\displaystyle\sum_{n=1}^{\infty}b_n$均为正项级数，且$\exists N\in \mathbb Z^+$，使得当$n>N$时，
+        \[
+        a_n\le b_n
+        \]
+        那么：
+        
+        \begin{itemize}
+            \item 当$\displaystyle\sum_{n=1}^{\infty}b_n$收敛时，$\displaystyle\sum_{n=1}^{\infty}a_n$也收敛；
+            \item 当$\displaystyle\sum_{n=1}^{\infty}a_n$发散时，$\displaystyle\sum_{n=1}^{\infty}b_n$也发散.
+        \end{itemize}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{比较判别法的极限形式}
+    \begin{theorem}[极限形式]
+        设$a_n\ge 0$且$b_n>0\ (n\in\mathbb N^+)$，又$\displaystyle\lim_{n\rightarrow\infty}\frac{a_n}{b_n}=l$（或$+\infty$），那么
+        \begin{itemize}
+            \item [(1)] 当$0<l<+\infty$时，级数$\displaystyle\sum_{n=1}^{\infty}a_n$与$\displaystyle\sum_{n=1}^{\infty}b_n$有相同的敛散性；
+            \item [(2)] 当$l=0$时，由$\displaystyle\sum_{n=1}^{\infty}b_n$收敛可得$\displaystyle\sum_{n=1}^{\infty}a_n$收敛；
+            \item [(3)] 当$l=+\infty$时，由$\displaystyle\sum_{n=1}^{\infty}a_n$发散可得$\displaystyle\sum_{n=1}^{\infty}b_n$发散.
+        \end{itemize}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{$p$-判别法}
+    \begin{theorem}[$p$-判别法]
+        设$\displaystyle\sum_{n=1}^{\infty}a_n$是正项级数，且$\displaystyle\lim_{n\rightarrow\infty}n^pa_n=l$（或$+\infty$），那么
+        \begin{itemize}
+            \item [(1)] 当$0\le l<+\infty$，且$p>1$时，$\displaystyle\sum_{n=1}^{\infty}a_n$收敛；
+            \item [(2)] 当$0< l\le+\infty$，且$p\le1$时，$\displaystyle\sum_{n=1}^{\infty}a_n$发散.
+        \end{itemize}
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{比值判别法}
+    \begin{theorem}[比值判别法]
+        设$\displaystyle\sum_{n=1}^{\infty}a_n$是正项级数，且$\displaystyle\lim_{n\rightarrow\infty}\frac{a_{n+1}}{a_n}=l$（或$+\infty$），那么
+        \begin{itemize}
+            \item [(1)] 当$0\le l <1$时，级数$\displaystyle\sum_{n=1}^{\infty}a_n$收敛；
+            \item [(2)] 当$1<l<+\infty$时，级数$\displaystyle\sum_{n=1}^{\infty}a_n$发散.
+        \end{itemize}
+    \end{theorem}
+    \begin{alertblock}{注意}
+        \begin{itemize}
+            \item $l=1$则不可用此方法判断
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{根值判别法}
+    \begin{theorem}[根值判别法]
+        设$\displaystyle\sum_{n=1}^{\infty}a_n$是正项级数，且$\displaystyle\lim_{n\rightarrow\infty}\sqrt[n]{a_n}=l$（或$+\infty$），那么
+        \begin{itemize}
+            \item [(1)] 当$0\le l <1$时，级数$\displaystyle\sum_{n=1}^{\infty}a_n$收敛；
+            \item [(2)] 当$1<l<+\infty$时，级数$\displaystyle\sum_{n=1}^{\infty}a_n$发散.
+        \end{itemize}
+    \end{theorem}
+    \begin{alertblock}{注意}
+        \begin{itemize}
+            \item $l=1$则不可用此方法判断
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\begin{frame}{积分判别法}
+    \begin{theorem}[积分判别法]
+        设$\displaystyle\sum_{n=1}^{\infty}a_n$是正项级数，若非负函数$f(x)$在$[1,+\infty)$上单调减少，且$\forall n\in \mathbb Z^+,\ a_n=f(n)$，
+        则级数$\displaystyle\sum_{n=1}^{\infty}a_n$与反常积分$\displaystyle\int_1^{+\infty}f(x)\mathrm dx$的敛散性相同.
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{交错级数}
+    \begin{definition}[交错级数]
+        各项正负相间，即形如$\displaystyle\pm\sum_{n=1}^{\infty}(-1)^{n-1}a_n\ (a_n>0)$的级数称为交错级数.
+    \end{definition}
+\end{frame}
+
+\begin{frame}{交错级数的Leibniz判别法}
+    \begin{theorem}[Leibniz判别法]
+        若交错级数$\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}a_n$满足：
+        \begin{itemize}
+            \item [(1)] $0<a_{n+1}\le a_n\ (n\in\mathbb Z^+)$
+            \item [(2)] $\lim_{n\rightarrow\infty}a_n=0$
+        \end{itemize}
+        则级数$\displaystyle\sum_{n=1}^{\infty}(-1)^{n-1}a_n$收敛，且其余项级数满足
+        
+        $$\left|\sum_{k=n+1}^{\infty}(-1)^{n-1}a_n\right|\le a_{n+1}$$
+    \end{theorem}
+\end{frame}
+
+\begin{frame}{绝对收敛与条件收敛}
+    \begin{definition}[绝对与条件收敛]
+        设$\displaystyle\sum_{n=1}^{\infty}a_n$是任意项级数.若级数$\displaystyle\sum_{n=1}^{\infty}|a_n|$收敛，则称$\displaystyle\sum_{n=1}^{\infty}a_n$绝对收敛；
+        若级数$\displaystyle\sum_{n=1}^{\infty}|a_n|$发散而$\displaystyle\sum_{n=1}^{\infty}a_n$收敛，则称级数$\displaystyle\sum_{n=1}^{\infty}a_n$条件收敛.
+    \end{definition}
+
+    \vspace{10pt}
+
+    \begin{block}{性质}
+        \begin{itemize}
+            \item 若$\displaystyle\sum_{n=1}^{\infty}a_n$绝对收敛，则$\displaystyle\sum_{n=1}^{\infty}a_n$收敛.
+        \end{itemize}
+    \end{block}
+\end{frame}
+
+\begin{frame}{绝对收敛级数的性质}
+    \begin{block}{交换律}
+        \begin{itemize}
+            \item 若级数$\displaystyle\sum_{n=1}^{\infty}a_n$绝对收敛，那么任意交换其各项的次序所得的新级数仍绝对收敛，且其和不变.
+        \end{itemize}
+    \end{block}
+
+    \begin{alertblock}{注意}
+        \begin{itemize}
+            \item 条件收敛的级数无此性质.
+        \end{itemize}
+    \end{alertblock}
+\end{frame}
+
+\section*{}
+
+\begin{frame}
+\vspace{25pt}
+\[
+\text{\Huge Good luck!}
+\]
+\end{frame}
+
+\end{document}

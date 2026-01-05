@@ -1,0 +1,247 @@
+\documentclass[t]{beamer}
+\usepackage[utf8]{inputenc}
+\usepackage{xeCJK}
+\usepackage{graphicx}
+\usepackage{subfigure}
+\usepackage{mathtools}
+\usepackage{utopia} %font utopia imported
+\usetheme{CambridgeUS}
+\usecolortheme{dolphin}
+\usefonttheme{professionalfonts}
+\usepackage{natbib}
+\usepackage{hyperref}
+\usepackage{fontspec}
+\usepackage{setspace}
+\usepackage{float}
+\usepackage{extarrows}
+\usepackage{tabularx}
+% \usepackage{enumitem}
+
+\setCJKmainfont{SourceHanSansSC-Regular.otf}[Path=../fonts/, BoldFont=bold.otf]
+
+\setbeamerfont{title}{size=\Large}
+\setbeamerfont{subtitle}{size=\small}
+\setbeamerfont{date}{size=\small}
+\setbeamerfont{institute}{size=\small}
+
+\setstretch{1.3}
+% \setlength{\parindent}{2em}
+% \setlength{\parskip}{0pt}
+% \setlist[itemize]{leftmargin=2em}
+
+% ↓↓↓ Modify this ↓↓↓
+\title{高等数学I 习题课17}
+\subtitle{2024秋 期末卷讲评}
+\date[2026.1.6]{2025.1.6}
+% ↑↑↑ Modify this ↑↑↑
+
+\author[上海科技大学]{}
+\institute[]{上海科技大学}
+
+\begin{document}
+
+\begin{frame}[c]
+    \vspace{15pt}
+    \titlepage
+\end{frame}
+\section{单项选择题}
+
+\begin{frame}
+    1. 设 $f(x)$ 是定义在 $[a,b]$ 上的函数，下列说法正确的是（\quad）
+    
+    \small A. 若 $f(x)$ 连续，则一定存在函数 $F(x)$ 使得 $F'(x)=f(x)$
+    
+    B. 即便 $f(x)$ 存在可去间断点，依然可能存在函数 $F(x)$ 使得 $F'(x)=f(x)$
+    
+    C. 即便 $f(x)$ 存在跳跃间断点，依然可能存在函数 $F(x)$ 使得 $F'(x)=f(x)$
+    
+    D. 即便 $f(x)$ 存在第二类间断点，也一定存在函数 $F(x)$ 使得 $F'(x)=f(x)$
+\end{frame}
+
+\begin{frame}
+    2. 下列说法错误的是（\quad）
+    
+    A. 若函数 $f(x)$ 在区间 $[a,b]$ 上连续，则 $f(x)$ 在该区间上可积
+    
+    B. 若函数 $f(x)$ 在区间 $[a,b]$ 上单调，则 $f(x)$ 在该区间上可积
+    
+    C. 若函数 $f(x)$ 在区间 $[a,b]$ 上可积，且令 $F(x)=\int_{a}^{x}f(t)dt$，则 $F'(x)=f(x)$
+    
+    D. 若函数 $F(x)$ 在区间 $(a,b)$ 有连续导数，令 $c\in(a,b)$ 为一个常数，则 $F(x)-\int_{c}^{x}F'(t)dt$ 有任意阶导数
+\end{frame}
+
+\begin{frame}
+    3. 下列反常积分中收敛的是（\quad）
+    \vspace{0.3cm}
+
+    \begin{tabularx}{\textwidth}{XX}
+        A. $\displaystyle \int_{-\infty}^{\infty}xe^{-x}dx$ & 
+        B. $\displaystyle \int_{-\infty}^{\infty}xe^{-x^{2}}dx$ \\[1.5em]
+        C. $\displaystyle \int_{-1}^{1}xe^{\frac{1}{x}}dx$ & 
+        D. $\displaystyle \int_{-1}^{1}\frac{1}{x}e^{x}dx$
+    \end{tabularx}
+\end{frame}
+
+\begin{frame}
+    
+\end{frame}
+
+\begin{frame}
+    4. 设 $\{a_{n}\},\{b_{n}\}$ 为两个数列，且 $\displaystyle \lim_{n\rightarrow\infty}a_{n}=0$。则（\quad）
+
+    
+    A. 当 $\displaystyle\sum_{n=0}^{\infty}b_{n}$ 收敛时，$\displaystyle\sum_{n=0}^{\infty}a_{n}b_{n}$ 收敛
+    
+    B. 当 $\displaystyle\sum_{n=0}^{\infty}|b_{n}|$ 收敛时，$\displaystyle\sum_{n=0}^{\infty}a_{n}b_{n}$ 收敛
+    
+    C. 当 $\displaystyle\sum_{n=0}^{\infty}b_{n}^{2}$ 收敛时，$\displaystyle\sum_{n=0}^{\infty}a_{n}b_{n}$ 收敛
+    
+    D. 当 $\displaystyle\sum_{n=0}^{\infty}b_{n}$ 发散时，$\displaystyle\sum_{n=0}^{\infty}a_{n}b_{n}$ 发散
+\end{frame}
+
+\begin{frame}
+    
+\end{frame}
+
+\begin{frame}
+    5. 假设 $f(x)$ 是定义在 $\mathbb{R}$ 上的奇连续函数，而 $g(x)$ 是定义在 $\mathbb{R}$ 上的偶连续函数。考虑下列函数：
+    \[ F(x)=\int_{-x}^{x}f(t)dt, \qquad G(x)=\int_{-x}^{x}g(t)dt \]
+    则下列说法错误的是（\quad）
+    \vspace{0.3cm}
+    
+    \begin{tabularx}{\textwidth}{XX}
+       A. $F(x)$ 是偶函数 & B. $F(x)$ 是奇函数 \\
+       C. $G(x)$ 是偶函数 & D. $G(x)$ 是奇函数
+    \end{tabularx}
+\end{frame}
+
+\begin{frame}
+    
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 2: Fill in the Blanks
+%----------------------------------------------------------------------------------------
+\section{填空题}
+
+\begin{frame}
+    6. 求极限 
+    \[ \lim_{n\rightarrow\infty}\left(\frac{1}{n^{2}+1}+\frac{2}{n^{2}+2^{2}}+\cdots+\frac{n}{n^{2}+n^{2}}\right) = \underline{\makebox[2cm]{}} \]
+\end{frame}
+
+\begin{frame}
+    7. 设 $f(x)=1+x+2x^{2}+3x^{3}$，则 $f(x)$ 在 $x_{0}=1$ 处的 Taylor 级数是 \underline{\makebox[3cm]{}}。
+    \vspace{1cm}
+    
+    8. 函数项级数 $\displaystyle \sum_{n=1}^{\infty}\frac{x^{2n}}{(n^{2}+1)e^{n}}$ 的收敛域是 \underline{\makebox[2cm]{}}。
+\end{frame}
+
+\begin{frame}
+    9. 令 $a, b\in\mathbb{R}$，计算定积分 
+    \[ \int_{0}^{\pi} \left[ a\cos^{2}x+b(\sin x+\cos x)^{2} \right] dx = \underline{\makebox[2cm]{}} \]
+    \vspace{1cm}
+\end{frame}
+
+\begin{frame}
+    10. 设 $f(t)$ 是定义在 $\mathbb{R}$ 上以 $\tau>0$ 为周期的连续函数。令
+    \[ F(x)=e^{x}\int_{x^{2}}^{x^{2}+\tau}f(t)dt \]
+    则 $F'(x)-F(x) = \underline{\makebox[2cm]{}}$。
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 3: Calculation Problems
+%----------------------------------------------------------------------------------------
+\section{计算题}
+
+\begin{frame}
+    11. 计算极限：
+    \[ \lim_{x\rightarrow0}\frac{\int_{0}^{x^{2}}(e^{t^{2}}-1)dt}{x[\ln(1+x)]^{2}\sin(x^{2})} \]
+\end{frame}
+
+\begin{frame}
+    12. 计算不定积分：
+    \[ \int\frac{x^{3}+5x^{2}+x+5}{(x^{2}+1)(x^{2}-4)}dx \]
+\end{frame}
+
+\begin{frame}
+    13. 计算不定积分 $(x>0)$：
+    \[ \int e^{2x}\arctan\sqrt{e^x-1}dx \]
+\end{frame}
+
+\begin{frame}
+    14. 设 $D$ 为由曲线 $y=-(x-1)^{2}+1$ 和 $y=x^{2}$ 围成的区域。求 $D$ 绕 $x$ 轴一周所得旋转体的体积。
+\end{frame}
+
+%----------------------------------------------------------------------------------------
+%	SECTION 4: Proof Problems
+%----------------------------------------------------------------------------------------
+\section{证明题}
+
+\begin{frame}
+    15. 假设 $\{a_{n}\},\{b_{n}\}$ 是各项均为正的数列。并且满足：
+    \begin{enumerate}
+        \item[(i)] $\displaystyle \lim_{n\rightarrow\infty}\frac{b_{n}}{n}=0$
+        \item[(ii)] $\displaystyle \lim_{n\rightarrow\infty}b_{n}\left(\frac{a_{n}}{a_{n+1}}-1\right)=\lambda>0$
+    \end{enumerate}
+    基于条件 (i)(ii)，完成以下证明：
+    \begin{itemize}
+        \item[(a)] 证明 $\displaystyle \lim_{n\rightarrow\infty}n\left(\frac{a_{n}}{a_{n+1}}-1\right)=+\infty$
+        \item[(b)] 证明存在一个正整数 $N$，使得当 $n\ge N$ 时有 $\displaystyle \frac{a_{n+1}}{a_{n}}\le\left(\frac{n}{n+1}\right)^{2}$
+        
+        \vspace{0.2cm}
+        \small（提示: 用反证法。假设存在一个无穷子列 $\{a_{n_{i}}\}$ 使得 $\displaystyle \frac{a_{n_{i}+1}}{a_{n_{i}}}>\left(\frac{n_{i}}{n_{i}+1}\right)^{2}$，试估计 $\displaystyle \lim_{i\rightarrow\infty}n_{i}\left(\frac{a_{n_{i}}}{a_{n_{i}+1}}-1\right)$）\normalsize
+        \vspace{0.2cm}
+        
+        \item[(c)] 证明 $\displaystyle \sum_{n=1}^{\infty}a_{n}$ 收敛。
+    \end{itemize}
+\end{frame}
+
+\begin{frame}
+    
+\end{frame}
+
+\begin{frame}
+    
+\end{frame}
+
+\begin{frame}
+    
+\end{frame}
+
+
+\begin{frame}
+    16. 设函数 $f$ 在 $[0,+\infty)$ 上连续，且对于任意 $0<a<b$ 满足
+    \[ f\left(\frac{a+b}{2}\right)\le\frac{f(a)+f(b)}{2} \]
+    记 $\displaystyle F(x)=\frac{1}{x}\int_{0}^{x}f(t)dt$。求证：
+    \[ F\left(\frac{a+b}{2}\right)\le\frac{F(a)+F(b)}{2} \]
+\end{frame}
+
+\begin{frame}
+    
+\end{frame}
+
+\begin{frame}
+    17. 令 $1 < a < b$，且令 $f(x)$ 为区间 $[a,b]$ 上的连续函数。证明：存在 $\xi\in(a,b)$ 满足
+    \[ \xi^{2}f(\xi)=\frac{ab}{b-a}\int_{a}^{b}f(x)dx \]
+    (提示: 可尝试柯西中值定理)
+\end{frame}
+
+\begin{frame}
+    
+\end{frame}
+
+\begin{frame}
+    
+\end{frame}
+
+
+% -------------------------------------------------------
+% \section*{}
+% \begin{frame}
+% \vspace{25pt}
+% \[
+% \text{\Huge }
+% \]
+% \end{frame}
+
+\end{document}
